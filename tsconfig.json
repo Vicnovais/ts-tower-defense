@@ -4,13 +4,13 @@
         "sourceMap": true,
         "noImplicitAny": true,
         "module": "commonjs",
-        "target": "es6",
-        "include": [
-            "src/**/*"
-        ],
-        "exclude": [
-            "node_modules",
-            "**/*.spec.ts"
-        ]
-    }
+        "target": "es6"
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
 }

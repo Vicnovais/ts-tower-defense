@@ -1,6 +1,7 @@
 module.exports = {
     mode: "production",
     devtool: "source-map",
+    entry: './src/tower.ts',
 
     resolve: {
         extensions: [".ts"]
@@ -9,7 +10,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.ts(x?)$/,
+                test: /\.ts$/,
                 exclude: /node_modules/,
                 use: [
                     {
