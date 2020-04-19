@@ -11,9 +11,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/underscore": "^1.9.4",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.2.2",
     "typescript": "^3.8.3",
+    "underscore": "^1.10.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
   }
