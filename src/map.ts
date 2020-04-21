@@ -1,15 +1,18 @@
 import LevelSchema from "./map.levels";
 import Tile from "./tile";
 import Colors from "./colors";
-import * as $ from "jquery";
+import $ from "jquery";
+import Waypoint from "./waypoint";
 
 class Map {
     private readonly level: number;
     private readonly levelSchema: LevelSchema;
+    private wayPoints: Waypoint[];
 
     constructor(level: number) {
         this.level = level;
         this.levelSchema = new LevelSchema(level);
+        this.wayPoints = [];
     }
 
     draw() {
@@ -18,28 +21,30 @@ class Map {
 
         for (let i = 0; i < schema.length; i++) {
             for (let j = 0; j < schema[i].length; j++) {
-                let tileMarkup = this.drawTile(schema[i][j]);
+                this.addWayPoint(schema[i][j], i, j);
+                let tileMarkup = this.drawTile(schema[i][j], i, j);
                 container.append(tileMarkup);
             }
         }
     }
 
-    private drawTile(tile: Tile) {
+    private drawTile(tile: Tile, x: number, y: number) {
         switch (tile) {
             case Tile.ENTER:
-            case Tile.E:
-                return `<div class="tile" style="background-color: ${ Colors.GRAY }"></div>`;
+                return `<div class="tile" style="background-color: ${ Colors.GRAY }" data-x="${ x }" data-y="${ y }"></div>`;
             case Tile.EXIT:
-            case Tile.X:
-                return `<div class="tile" style="background-color: ${ Colors.DARK_GRAY }"></div>`;
+                return `<div class="tile" style="background-color: ${ Colors.DARK_GRAY }" data-x="${ x }" data-y="${ y }"></div>`;
             case Tile.PATH:
-            case Tile.P:
-                return `<div class="tile" style="background-color: ${ Colors.BLACK }"></div>`;
+            case Tile.WAYPOINT:
+                return `<div class="tile" style="background-color: ${ Colors.BLACK }" data-x="${ x }" data-y="${ y }"></div>`;
             case Tile.TERRAIN:
-            case Tile.T:
                 return `<div class="tile"></div>`;
             default: throw new Error(`Tile ${ tile } not found.`);
         }
+    }
+
+    private addWayPoint(tile: Tile, x: number, y: number) {
+        if (tile === Tile.WAYPOINT) this.wayPoints.push(new Waypoint(x, y));
     }
 }
 

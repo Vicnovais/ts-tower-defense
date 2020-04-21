@@ -20,6 +20,10 @@ class Monster {
     setSpeedFactor(factor: number) {
         this.speed *= factor;
     }
+
+    draw() {
+        return `<div class="monster"></div>`;
+    }
 }
 
 export default Monster;

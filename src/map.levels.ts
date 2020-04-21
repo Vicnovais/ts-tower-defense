@@ -27,7 +27,7 @@ class LevelSchema {
                 [Tile.T, Tile.T, Tile.E, Tile.T, Tile.T, Tile.T, Tile.T, Tile.T],
                 [Tile.T, Tile.T, Tile.P, Tile.T, Tile.T, Tile.T, Tile.T, Tile.T],
                 [Tile.T, Tile.T, Tile.P, Tile.T, Tile.T, Tile.T, Tile.T, Tile.T],
-                [Tile.T, Tile.T, Tile.P, Tile.P, Tile.P, Tile.T, Tile.T, Tile.T],
+                [Tile.T, Tile.T, Tile.W, Tile.P, Tile.W, Tile.T, Tile.T, Tile.T],
                 [Tile.T, Tile.T, Tile.T, Tile.T, Tile.P, Tile.T, Tile.T, Tile.T],
                 [Tile.T, Tile.T, Tile.T, Tile.T, Tile.P, Tile.T, Tile.T, Tile.T],
                 [Tile.T, Tile.T, Tile.T, Tile.T, Tile.P, Tile.T, Tile.T, Tile.T],

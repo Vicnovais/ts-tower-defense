@@ -12,19 +12,27 @@ body {
     position: relative;
     
     #map {
-        width: 80%;
-        height: 400px;
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
+        display: grid;
+        grid-template-columns: repeat(8, 50px);
+        column-gap: 10px;
+        row-gap: 10px;
 
         .tile, .tower {
             display: inline-block;
             border: 2px solid #000;
             height: 50px;
             width: 50px;
-            margin: 5px;
+            box-sizing: border-box;
+        }
+
+        .monster {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
         }
     }
 }
