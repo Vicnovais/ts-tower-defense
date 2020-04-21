@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/jquery": "^3.3.35",
     "@types/underscore": "^1.9.4",
     "source-map-loader": "^0.2.4",
     "ts-loader": "^6.2.2",
@@ -18,5 +19,8 @@
     "underscore": "^1.10.2",
     "webpack": "^4.42.1",
     "webpack-cli": "^3.3.11"
+  },
+  "dependencies": {
+    "jquery": "^3.5.0"
   }
 }

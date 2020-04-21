@@ -1,0 +1,28 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+}
+#app {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+#app #map {
+  width: 80%;
+  height: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+#app #map .tile,
+#app #map .tower {
+  display: inline-block;
+  border: 2px solid #000;
+  height: 50px;
+  width: 50px;
+  margin: 5px;
+}

@@ -1,7 +1,7 @@
 module.exports = {
     mode: "production",
     devtool: "source-map",
-    entry: './src/tower.ts',
+    entry: './src/scene.ts',
 
     resolve: {
         extensions: [".ts"]

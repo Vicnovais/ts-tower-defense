@@ -2,10 +2,10 @@ import * as _ from "underscore";
 import Tile from "./tile";
 
 class Schema {
-    public matrix: number[][];
+    public matrix: Tile[][];
     public level: number;
 
-    constructor(level: number, matrix: number[][]) {
+    constructor(level: number, matrix: Tile[][]) {
         this.matrix = matrix;
         this.level = level;
     }
@@ -17,6 +17,7 @@ class LevelSchema {
 
     constructor(level: number) {
         this.level = level;
+        this.schemas = [];
         this.addSchemas();
     }
 
@@ -35,7 +36,7 @@ class LevelSchema {
         );
     }
 
-    getSchema(): number[][] {
+    getSchema(): Tile[][] {
         let schema = _.first(this.schemas.filter(t => t.level === this.level));
         if (!schema) throw new Error(`Schema for level ${ this.level } not found.`);
         return schema.matrix;
