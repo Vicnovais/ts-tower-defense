@@ -31,9 +31,9 @@ class Map {
     private drawTile(tile: Tile, x: number, y: number) {
         switch (tile) {
             case Tile.ENTER:
-                return `<div class="tile" style="background-color: ${ Colors.GRAY }" data-x="${ x }" data-y="${ y }"></div>`;
+                return `<div class="tile" style="background-color: ${ Colors.GRAY }" data-x="${ x }" data-y="${ y }" data-type="enter"></div>`;
             case Tile.EXIT:
-                return `<div class="tile" style="background-color: ${ Colors.DARK_GRAY }" data-x="${ x }" data-y="${ y }"></div>`;
+                return `<div class="tile" style="background-color: ${ Colors.DARK_GRAY }" data-x="${ x }" data-y="${ y }" data-type="exit"></div>`;
             case Tile.PATH:
             case Tile.WAYPOINT:
                 return `<div class="tile" style="background-color: ${ Colors.BLACK }" data-x="${ x }" data-y="${ y }"></div>`;
@@ -45,6 +45,18 @@ class Map {
 
     private addWayPoint(tile: Tile, x: number, y: number) {
         if (tile === Tile.WAYPOINT) this.wayPoints.push(new Waypoint(x, y));
+    }
+
+    getWayPoints() {
+        return this.wayPoints;
+    }
+
+    getEntrance() {
+        return $("div[data-type='enter']");
+    }
+
+    appendMonster($elem: JQuery<HTMLElement>) {
+        $("#map").append($elem);
     }
 }
 

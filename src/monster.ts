@@ -1,12 +1,17 @@
+import Engine from "./engine";
+import $ from "jquery";
+
 class Monster {
     private hp: number;
     private speed: number;
     private armor: number;
+    private element: JQuery<HTMLElement>;
 
     constructor(hp: number, speed: number, armor: number) {
         this.hp = hp;
         this.speed = speed;
         this.armor = armor
+        this.element = null;
     }
 
     setHpFactor(factor: number) {
@@ -22,7 +27,20 @@ class Monster {
     }
 
     draw() {
-        return `<div class="monster"></div>`;
+        this.element = $(`<div id="${ Engine.createUUID() }" class="monster"></div>`);
+        return this;
+    }
+
+    getPosition() {
+        return this.element.position();
+    }
+
+    getElement() {
+        return this.element;
+    }
+
+    getSpeed() {
+        return this.speed;
     }
 }
 

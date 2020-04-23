@@ -12,7 +12,7 @@ class Waypoint {
     getPosition() {
         let $elem = $(`div[data-x="${ this.x }"][data-y="${ this.y }"]`);
         if ($elem.length) return $elem.position();
-        return null;
+        throw new Error(`Position (${ this.x }, ${ this.y }) not found.`);
     }
 }
 
