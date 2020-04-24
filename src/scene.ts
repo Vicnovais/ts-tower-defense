@@ -62,7 +62,10 @@ class Scene {
             this.map.appendMonster($monster);
             $monster.css({ left: entrance.left + 10, top: entrance.top + 10 });
             $monster.show();
-            Engine.moveMonster(monster, this.map.getWayPoints());
+
+            this.map.getWayPoints().forEach(t => {
+                Engine.moveMonster(monster, this.map);
+            });
         }, (index + 1) * this.getLevelData().monster.spawnTime);
     }
 }

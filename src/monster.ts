@@ -1,17 +1,20 @@
 import Engine from "./engine";
 import $ from "jquery";
+import Waypoint from "./waypoint";
 
 class Monster {
     private hp: number;
     private speed: number;
     private armor: number;
     private element: JQuery<HTMLElement>;
+    private walkedWaypoints: Waypoint[];
 
     constructor(hp: number, speed: number, armor: number) {
         this.hp = hp;
         this.speed = speed;
         this.armor = armor
         this.element = null;
+        this.walkedWaypoints = [];
     }
 
     setHpFactor(factor: number) {
@@ -41,6 +44,14 @@ class Monster {
 
     getSpeed() {
         return this.speed;
+    }
+
+    addWalkedWaypoint(wayPoint: Waypoint) {
+        this.walkedWaypoints.push(wayPoint);
+    }
+
+    getWalkedWaypoints() {
+        return this.walkedWaypoints;
     }
 }
 

@@ -1,20 +1,26 @@
 import Monster from "./monster";
 import Waypoint from "./waypoint";
+import Map from "./map";
 
 class Engine {
     private static calcDistance(x1: number, y1: number, x2: number, y2: number) {
         return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
     }
 
-    static moveMonster(monster: Monster, wayPoints: Waypoint[]) {
+    static moveMonster(monster: Monster, map: Map) {
         let distance = +Infinity,
             monsterPosition = monster.getPosition(),
             monsterX = monsterPosition.left,
             monsterY = monsterPosition.top,
             $monster = monster.getElement(),
-            moveTo = { x: 0, y: 0 };
+            moveTo = { x: 0, y: 0 },
+            closerWaypoint = null,
+            wayPoints = map.getWayPoints(),
+            targetWaypoints = wayPoints.filter(t => monster.getWalkedWaypoints()
+                                                           .map(u => u.getId())
+                                                           .indexOf(t.getId()) === -1);
 
-        wayPoints.forEach((t) => {
+        targetWaypoints.forEach((t) => {
             let wayPointPosition = t.getPosition(),
                 wayPointX = wayPointPosition.left,
                 wayPointY = wayPointPosition.top,
@@ -24,8 +30,11 @@ class Engine {
                 distance = calc;
                 moveTo.x = wayPointX;
                 moveTo.y = wayPointY;
+                closerWaypoint = t;
             }
         });
+
+        monster.addWalkedWaypoint(closerWaypoint);
 
         $monster.animate({ 
             top: moveTo.y + 10,
