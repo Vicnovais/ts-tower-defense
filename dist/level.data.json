@@ -1,0 +1,24 @@
+{
+    "levels": [
+        {
+            "number": 1,
+            "monster": {
+                "baseHp": 100,
+                "baseArmor": 1,
+                "baseSpeed": 1,
+                "spawnTime": 1000
+            },
+            "waves": [
+                {
+                    "number": 1,
+                    "monster": {
+                        "count": 10,
+                        "hpFactor": 1,
+                        "armorFactor": 1,
+                        "speedFactor": 1
+                    }
+                }
+            ]
+        }
+    ]
+}

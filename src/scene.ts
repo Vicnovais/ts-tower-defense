@@ -17,7 +17,7 @@ class Scene {
         this.step = 1;
         this.map = new Map(this.level);
         this.waves = [];
-
+        this.map.getPath();
         $(document).ready(() => {
             this.setup();
             this.start();
@@ -63,7 +63,7 @@ class Scene {
             $monster.css({ left: entrance.left + 10, top: entrance.top + 10 });
             $monster.show();
 
-            this.map.getWayPoints().forEach(t => {
+            this.map.getPath().forEach(t => {
                 Engine.moveMonster(monster, this.map);
             });
         }, (index + 1) * this.getLevelData().monster.spawnTime);

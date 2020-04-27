@@ -20,6 +20,14 @@ class Waypoint {
     getId() {
         return this.id;
     }
+
+    getX() {
+        return this.x;
+    }
+
+    getY() {
+        return this.y;
+    }
 }
 
 export default Waypoint;

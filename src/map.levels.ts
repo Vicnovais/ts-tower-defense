@@ -2,12 +2,14 @@ import * as _ from "underscore";
 import Tile from "./tile";
 
 class Schema {
-    public matrix: Tile[][];
-    public level: number;
+    public readonly matrix: Tile[][];
+    public readonly path: number[][];
+    public readonly level: number;
 
-    constructor(level: number, matrix: Tile[][]) {
+    constructor(level: number, matrix: Tile[][], path: number[][]) {
         this.matrix = matrix;
         this.level = level;
+        this.path = path;
     }
 }
 
@@ -32,6 +34,14 @@ class LevelSchema {
                 [Tile.T, Tile.T, Tile.T, Tile.T, Tile.W, Tile.P, Tile.P, Tile.W],
                 [Tile.T, Tile.T, Tile.T, Tile.T, Tile.T, Tile.T, Tile.T, Tile.P],
                 [Tile.T, Tile.T, Tile.T, Tile.T, Tile.X, Tile.P, Tile.P, Tile.W]
+            ], [
+                [0, 2],
+                [3, 2],
+                [3, 4],
+                [5, 4],
+                [5, 7],
+                [7, 7],
+                [7, 4]
             ])
         );
     }
@@ -40,6 +50,12 @@ class LevelSchema {
         let schema = _.first(this.schemas.filter(t => t.level === this.level));
         if (!schema) throw new Error(`Schema for level ${ this.level } not found.`);
         return schema.matrix;
+    }
+
+    getPath(): number[][] {
+        let schema = _.first(this.schemas.filter(t => t.level === this.level));
+        if (!schema) throw new Error(`Path for level ${ this.level } not found.`);
+        return schema.path;
     }
 }
 
