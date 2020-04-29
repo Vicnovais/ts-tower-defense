@@ -10,6 +10,22 @@ body {
   height: 100%;
   position: relative;
 }
+#app #info {
+  width: 200px;
+  height: 40px;
+  position: absolute;
+  top: 100px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-weight: bold;
+  font-size: 30px;
+}
+#app #info .lives {
+  display: inline-block;
+}
+#app #info .lives .icon {
+  color: #e74c3c;
+}
 #app #map {
   position: absolute;
   top: 50%;

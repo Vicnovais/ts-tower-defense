@@ -2,6 +2,7 @@
     "levels": [
         {
             "number": 1,
+            "lives": 5,
             "monster": {
                 "baseHp": 100,
                 "baseArmor": 1,

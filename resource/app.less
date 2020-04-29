@@ -10,6 +10,25 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
+
+    #info {
+        width: 200px;
+        height: 40px;
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: bold;
+        font-size: 30px;
+
+        .lives {
+            display: inline-block;
+
+            .icon {
+                color: #e74c3c;
+            }
+        }
+    }
     
     #map {
         position: absolute;

@@ -53,6 +53,12 @@ class Monster {
     getWalkedWaypoints() {
         return this.walkedWaypoints;
     }
+
+    spawn(coord: JQuery.Coordinates) {
+        this.element.hide();
+        this.element.css({ left: coord.left + 10, top: coord.top + 10 });
+        this.element.show();
+    }
 }
 
 export default Monster;
