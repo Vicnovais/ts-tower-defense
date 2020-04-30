@@ -1,14 +1,17 @@
 import $ from "jquery";
+import Tile from "./tile";
 
 class Waypoint {
     private readonly x: number;
     private readonly y: number;
     private readonly id: string;
+    private readonly tile: Tile;
 
-    constructor(x: number, y: number, id: string) {
+    constructor(x: number, y: number, id: string, tile: Tile) {
         this.x = x;
         this.y = y;
         this.id = id;
+        this.tile = tile;
     }
 
     getPosition() {
@@ -27,6 +30,10 @@ class Waypoint {
 
     getY() {
         return this.y;
+    }
+
+    getTile() {
+        return this.tile;
     }
 }
 

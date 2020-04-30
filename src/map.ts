@@ -46,7 +46,7 @@ class Map {
 
     private addWayPoint(tile: Tile, x: number, y: number, id: string) {
         if (tile === Tile.WAYPOINT || tile === Tile.EXIT) 
-            this.wayPoints.push(new Waypoint(x, y, id));
+            this.wayPoints.push(new Waypoint(x, y, id, tile));
     }
 
     getEntrance() {

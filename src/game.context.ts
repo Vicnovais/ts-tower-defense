@@ -19,8 +19,15 @@ class GameContext {
     }
 
     takeLife() {
-        --this.lives;
-        this.setLivesText();
+        if (this.lives === 0) this.onGameOver();
+        else {
+            --this.lives;
+            this.setLivesText();
+        }
+    }
+
+    private onGameOver() {
+        alert("Game Over!");
     }
 
     private setLivesText() {
