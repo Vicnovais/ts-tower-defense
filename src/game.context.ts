@@ -1,20 +1,19 @@
-import LevelData from "./level.data.json";
 import _ from "underscore";
 import $ from "jquery";
+import LevelContext from "./level.context";
 
 class GameContext {
-    private level: number;
     private lives: number;
     private $element: JQuery<HTMLElement> = $("#lives-count");
+    private readonly levelContext: LevelContext;
 
     constructor(level: number) {
-        this.level = level;
+        this.levelContext = new LevelContext(level);
         this.setLives();
     }
 
     private setLives() {
-        let levelData = _.first(LevelData.levels.filter(t => t.number === this.level));
-        this.lives = levelData.lives;
+        this.lives = this.levelContext.initialLives;
         this.setLivesText();
     }
 
@@ -27,11 +26,19 @@ class GameContext {
     }
 
     private onGameOver() {
-        alert("Game Over!");
+        //alert("Game Over!");
     }
 
     private setLivesText() {
         this.$element.text(this.lives);
+    }
+
+    getLevelMap() {
+        return this.levelContext.map;
+    }
+
+    getLevelWaves() {
+        return this.levelContext.waves;
     }
 }
 

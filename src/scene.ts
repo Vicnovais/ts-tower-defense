@@ -1,5 +1,3 @@
-import Map from "./map";
-import Wave from "./wave";
 import Monster from "./monster";
 import LevelData from "./level.data.json";
 import $ from "jquery";
@@ -8,23 +6,21 @@ import Engine from "./engine";
 import GameContext from "./game.context";
 
 class Scene {
-    private map: Map;
-    private waves: Wave[];
-    private step: number;
     private level: number;
     private gameContext: GameContext;
 
     constructor() {
         this.level = 1;
-        this.step = 1;
-        this.map = new Map(this.level);
         this.gameContext = new GameContext(this.level);
-        this.waves = [];
-        this.map.getPath();
+
         $(document).ready(() => {
             this.setup();
             this.start();
         });
+    }
+
+    getMap() {
+        return this.gameContext.getLevelMap();
     }
 
     private getLevelData() {
@@ -32,13 +28,11 @@ class Scene {
     }
 
     private setup() {
-        this.map.draw();
-        this.waves.push(new Wave(this.level, this.step));
-        this.sendWaves();
+        this.getMap().draw();
     }
 
     private sendWaves() {
-        this.waves.forEach((t) => {
+        this.gameContext.getLevelWaves().forEach((t) => {
             t.getMonsters().forEach((u, i) => {
                 this.spawnMonster(u, i);
             });
@@ -46,14 +40,14 @@ class Scene {
     }
 
     private start() {
-
+        this.sendWaves();
     }
 
     private clear() {
     }
 
     private getEntrance() {
-        return this.map.getEntrance();
+        return this.gameContext.getLevelMap().getEntrance();
     }
 
     private spawnMonster(monster: Monster, index: number) {
@@ -62,8 +56,8 @@ class Scene {
                 entrance = this.getEntrance().position();
 
             monster.spawn(entrance);
-            this.map.appendMonster($monster);
-            Engine.moveMonster(monster, this.map, this.gameContext);
+            this.getMap().appendMonster($monster);
+            Engine.moveMonster(monster, this.getMap(), this.gameContext);
         }, (index + 1) * this.getLevelData().monster.spawnTime);
     }
 }

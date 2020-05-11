@@ -16,8 +16,8 @@ class Engine {
         let $monster = monster.getElement(),
             wayPoints = map.getPath(),
             targetWaypoints = wayPoints.filter(t => monster.getWalkedWaypoints()
-                                                        .map(u => u.getId())
-                                                        .indexOf(t.getId()) === -1);
+                                                           .map(u => u.getId())
+                                                           .indexOf(t.getId()) === -1);
 
         let walkTo = _.first(targetWaypoints);
         monster.addWalkedWaypoint(walkTo);
@@ -25,25 +25,23 @@ class Engine {
         $monster.animate({
             top: walkTo.getPosition().top + 10,
             left: walkTo.getPosition().left + 10
-        }, monster.getSpeed() * 2000, "swing", this.onMove.bind(this, walkTo.getTile(), gameContext));
+        }, monster.getSpeed() * 2000, "swing", this.onMove.bind(this, walkTo.getTile(), gameContext, $monster));
     }
 
     static moveMonster(monster: Monster, map: Map, gameContext: GameContext) {
         let path = map.getPath();
-
-        for (let i = 0; i < path.length; i++) {
-            this.doMoveMonster(monster, map, gameContext);
-        }
+        path.forEach(() => this.doMoveMonster(monster, map, gameContext));
     }
 
-    static onReachExit(gameContext: GameContext) {
+    static onReachExit(gameContext: GameContext, $monster: JQuery<HTMLElement>) {
         gameContext.takeLife();
+        $monster.remove();
     }
 
-    static onMove(tile: Tile, gameContext: GameContext) {
+    static onMove(tile: Tile, gameContext: GameContext, $monster: JQuery<HTMLElement>) {
         switch (tile) {
             case Tile.EXIT:
-                this.onReachExit(gameContext);
+                this.onReachExit(gameContext, $monster);
                 break;
         }
     }

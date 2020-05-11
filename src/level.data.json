@@ -3,6 +3,7 @@
         {
             "number": 1,
             "lives": 5,
+            "initialGold": 100,
             "monster": {
                 "baseHp": 100,
                 "baseArmor": 1,
@@ -12,6 +13,7 @@
             "waves": [
                 {
                     "number": 1,
+                    "goldPerKill": 10,
                     "monster": {
                         "count": 10,
                         "hpFactor": 1,
