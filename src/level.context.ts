@@ -37,6 +37,7 @@ class LevelContext {
     public readonly waves: Wave[];
     public readonly map: Map;
     public readonly initialLives: number;
+    public readonly initialGold: number;
 
     constructor(level: number) {
         this.level = level;
@@ -44,6 +45,7 @@ class LevelContext {
         this.waves = this.getWaves();
         this.map = new Map(level);
         this.initialLives = this.levelData.lives;
+        this.initialGold = this.levelData.initialGold;
     }
 
     private getLevelData(): ILevelData {

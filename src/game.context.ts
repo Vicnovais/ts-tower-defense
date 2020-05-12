@@ -4,17 +4,15 @@ import LevelContext from "./level.context";
 
 class GameContext {
     private lives: number;
-    private $element: JQuery<HTMLElement> = $("#lives-count");
-    private readonly levelContext: LevelContext;
+    private gold: number;
+    private $elementLives: JQuery<HTMLElement> = $("#lives-count");
+    private $elementGold: JQuery<HTMLElement> = $("#gold-count");
+    private levelContext: LevelContext;
 
-    constructor(level: number) {
+    createLevelContext(level: number) {
         this.levelContext = new LevelContext(level);
         this.setLives();
-    }
-
-    private setLives() {
-        this.lives = this.levelContext.initialLives;
-        this.setLivesText();
+        this.setGold();
     }
 
     takeLife() {
@@ -25,12 +23,26 @@ class GameContext {
         }
     }
 
+    private setGold() {
+        this.gold = this.levelContext.initialGold;
+        this.setGoldText();
+    }
+
+    private setLives() {
+        this.lives = this.levelContext.initialLives;
+        this.setLivesText();
+    }
+
     private onGameOver() {
         //alert("Game Over!");
     }
 
     private setLivesText() {
-        this.$element.text(this.lives);
+        this.$elementLives.text(this.lives);
+    }
+
+    private setGoldText() {
+        this.$elementGold.text(this.gold);
     }
 
     getLevelMap() {

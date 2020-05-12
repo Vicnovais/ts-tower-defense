@@ -12,7 +12,7 @@ body {
     position: relative;
 
     #info {
-        width: 200px;
+        width: 300px;
         height: 40px;
         position: absolute;
         top: 100px;
@@ -26,6 +26,15 @@ body {
 
             .icon {
                 color: #e74c3c;
+            }
+        }
+
+        .gold {
+            display: inline-block;
+            margin-left: 50px;
+
+            .icon {
+                color: #f6b93b;
             }
         }
     }
@@ -54,6 +63,81 @@ body {
             height: 30px;
             border-radius: 50%;
             background-color: #fff;
+        }
+    }
+
+    #towers-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 80px;
+        border-top: 2px solid #000;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        span {
+            position: absolute;
+            top: 50%;
+            left: 30px;
+            transform: translateY(-50%);
+            font-size: 25px;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .tower {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #000;
+            margin-left: 20px;
+            cursor: pointer;
+            position: relative;
+
+            &.red {
+                background-color: #e74c3c;
+            }
+
+            &.yellow {
+                background-color: #f6b93b;
+            }
+
+            &.green {
+                background-color: #27ae60;
+            }
+
+            &.blue {
+                background-color: #2980b9;
+            }
+
+            &.black {
+                background-color: #34495e;
+            }
+
+            .tooltip {
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                display: none;
+                position: absolute;
+                top: -55px;
+                left: 50%;
+                transform: translateX(-50%);
+                height: 40px;
+                width: 70px;
+                background-color: #fff;
+                border: 1px solid lightgrey;
+                box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+                border-radius: 10px;
+            }
+
+            &:hover {
+                .tooltip {
+                    display: flex;
+                }
+            }
         }
     }
 }

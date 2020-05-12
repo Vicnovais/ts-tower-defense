@@ -2,7 +2,7 @@
     "levels": [
         {
             "number": 1,
-            "lives": 5,
+            "lives": 20,
             "initialGold": 100,
             "monster": {
                 "baseHp": 100,

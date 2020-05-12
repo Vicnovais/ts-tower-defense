@@ -11,7 +11,7 @@ class Scene {
 
     constructor() {
         this.level = 1;
-        this.gameContext = new GameContext(this.level);
+        this.gameContext = new GameContext();
 
         $(document).ready(() => {
             this.setup();
@@ -28,6 +28,7 @@ class Scene {
     }
 
     private setup() {
+        this.gameContext.createLevelContext(1);
         this.getMap().draw();
     }
 
