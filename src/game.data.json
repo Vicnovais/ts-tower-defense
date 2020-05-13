@@ -1,0 +1,29 @@
+{
+    "towers": [
+        {
+            "type": "red",
+            "atk": 10,
+            "price": 100
+        },
+        {
+            "type": "yellow",
+            "atk": 30,
+            "price": 150
+        },
+        {
+            "type": "green",
+            "atk": 60,
+            "price": 280
+        },
+        {
+            "type": "blue",
+            "atk": 100,
+            "price": 450
+        },
+        {
+            "type": "black",
+            "atk": 200,
+            "price": 700
+        }
+    ]
+}

@@ -1,6 +1,7 @@
 import _ from "underscore";
 import $ from "jquery";
 import LevelContext from "./level.context";
+import GameData from "./game.data.json";
 
 class GameContext {
     private lives: number;
@@ -8,6 +9,10 @@ class GameContext {
     private $elementLives: JQuery<HTMLElement> = $("#lives-count");
     private $elementGold: JQuery<HTMLElement> = $("#gold-count");
     private levelContext: LevelContext;
+
+    constructor() {
+        this.setTowersInfo();
+    }
 
     createLevelContext(level: number) {
         this.levelContext = new LevelContext(level);
@@ -51,6 +56,18 @@ class GameContext {
 
     getLevelWaves() {
         return this.levelContext.waves;
+    }
+
+    private setTowersInfo() {
+        GameData.towers.forEach(t => {
+            let type = t.type,
+                atk = t.atk,
+                price = t.price,
+                $tower = $(`.tower.${ type } .tooltip`),
+                $atkTxt = `<span>ATK: ${ atk }</span>`;
+
+            $tower.html($atkTxt);
+        });
     }
 }
 

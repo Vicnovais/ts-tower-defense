@@ -39,7 +39,7 @@ class Map {
             case Tile.WAYPOINT:
                 return `<div class="tile" id="${ id }" style="background-color: ${ Colors.BLACK }" data-x="${ x }" data-y="${ y }"></div>`;
             case Tile.TERRAIN:
-                return `<div class="tile" id="${ id }"></div>`;
+                return `<div class="tile empty" id="${ id }"></div>`;
             default: throw new Error(`Tile ${ tile } not found.`);
         }
     }

@@ -4,6 +4,7 @@ import $ from "jquery";
 import _ from "underscore";
 import Engine from "./engine";
 import GameContext from "./game.context";
+import EventController from "./event.controller";
 
 class Scene {
     private level: number;
@@ -30,6 +31,7 @@ class Scene {
     private setup() {
         this.gameContext.createLevelContext(1);
         this.getMap().draw();
+        EventController.attachDragEvents();
     }
 
     private sendWaves() {
@@ -45,6 +47,7 @@ class Scene {
     }
 
     private clear() {
+        EventController.dispose();
     }
 
     private getEntrance() {

@@ -30,7 +30,12 @@ class Monster {
     }
 
     draw() {
-        this.element = $(`<div id="${ Engine.createUUID() }" class="monster"></div>`);
+        this.element = $(`
+        <div id="${ Engine.createUUID() }" class="monster">
+            <div class="hp">
+                <div class="life"></div>
+            </div>
+        </div>`);
         return this;
     }
 

@@ -56,7 +56,26 @@ body {
   width: 30px;
   height: 30px;
   border-radius: 50%;
+  border: 2px solid gray;
   background-color: #fff;
+}
+#app #map .monster .hp {
+  position: absolute;
+  top: -12px;
+  height: 3px;
+  width: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: grey;
+  border: 2px solid #000;
+}
+#app #map .monster .hp .life {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  background-color: lawngreen;
 }
 #app #towers-container {
   position: absolute;
@@ -117,6 +136,11 @@ body {
   border: 1px solid lightgrey;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
   border-radius: 10px;
+}
+#app #towers-container .tower .tooltip span {
+  font-size: 12px;
+  transform: none;
+  position: unset;
 }
 #app #towers-container .tower:hover .tooltip {
   display: flex;
