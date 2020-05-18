@@ -9,6 +9,7 @@ import EventController from "./event.controller";
 class Scene {
     private level: number;
     private gameContext: GameContext;
+    private eventController: EventController;
 
     constructor() {
         this.level = 1;
@@ -30,13 +31,17 @@ class Scene {
 
     private setup() {
         this.gameContext.createLevelContext(1);
+        this.eventController = new EventController(this.getMap());
         this.getMap().draw();
-        EventController.attachDragEvents();
+        this.eventController.attachDragEvents();
     }
 
     private sendWaves() {
         this.gameContext.getLevelWaves().forEach((t) => {
-            t.getMonsters().forEach((u, i) => {
+            let monsters = t.getMonsters();
+            this.getMap().addMonsters(monsters);
+
+            monsters.forEach((u, i) => {
                 this.spawnMonster(u, i);
             });
         });
@@ -47,7 +52,7 @@ class Scene {
     }
 
     private clear() {
-        EventController.dispose();
+        this.eventController.dispose();
     }
 
     private getEntrance() {

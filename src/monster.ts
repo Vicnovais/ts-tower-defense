@@ -36,6 +36,7 @@ class Monster {
                 <div class="life"></div>
             </div>
         </div>`);
+        
         return this;
     }
 

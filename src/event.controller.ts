@@ -1,9 +1,17 @@
 import $ from "jquery";
+import _ from "underscore";
+import Map from "./map";
+import Colors from "./colors";
 
 class EventController {
-    static draggedElement: JQuery<HTMLElement>;
+    private map: Map;
+    private draggedElement: JQuery<HTMLElement>;
 
-    static attachDragEvents() {
+    constructor(map: Map) {
+        this.map = map;
+    }
+
+    public attachDragEvents() {
         $(".tile.empty").on("drop", (e) => {
             this.onDrop(e);
         });
@@ -21,49 +29,40 @@ class EventController {
         });
     }
 
-    private static onDrop(e: JQuery.DropEvent) {
+    private onDrop(e: JQuery.DropEvent) {
         e.preventDefault();
         e.stopPropagation();
 
         let dataTransfer = e.originalEvent.dataTransfer,
             towerType = dataTransfer.getData("towerType"),
             square = $(e.currentTarget),
-            dataX = square.attr("data-x"),
-            dataY = square.attr("data-y");
+            dataX = Number(square.attr("data-x")),
+            dataY = Number(square.attr("data-y")),
+            color = this.getColorEnum(towerType) as Colors;
 
-        //this.mapController.map.schema[dataX][dataY] = this.mapController.getTileType(TOWER);
-        //this.towerController.addTower({ x: dataX, y: dataY }, towerType);
+        this.map.addTower(color, dataX, dataY);
         square.css("opacity", 1);
         square.css("backgroundColor", towerType);
-        //square.addClass(TOWER.toLowerCase());
         square.off("drop");
         square.off("dragover");
         square.off("dragleave");
     }
 
-    private static onDragStart(e: JQuery.DragStartEvent) {
+    private onDragStart(e: JQuery.DragStartEvent) {
         let dataTransfer = e.originalEvent.dataTransfer,
             target = $(e.currentTarget),
-            towerType = "red"
-            //towerType = target.attr("data-kind");
-            //towerCost = this.towerController.getTowerCost(towerType);
+            towerType = target.css("background-color");
 
-        // if (currentGold < towerCost) {
-        //     e.stopPropagation();
-        //     e.preventDefault();
-        // }
-        // else {
-            this.draggedElement = target;
-            dataTransfer.setData("towerType", towerType);
-        //}
+        this.draggedElement = target;
+        dataTransfer.setData("towerType", towerType);
     }
 
-    private static onDragOver(e: JQuery.DragOverEvent) {
+    private onDragOver(e: JQuery.DragOverEvent) {
         e.preventDefault();  
         e.stopPropagation();
 
         if (this.draggedElement) {
-            let towerType = "red",
+            let towerType = this.draggedElement.css("background-color"),
                 square = $(e.currentTarget);
         
             square.css("opacity", 0.5);
@@ -71,7 +70,7 @@ class EventController {
         }
     }
 
-    private static onDragLeave(e: JQuery.DragLeaveEvent) {
+    private onDragLeave(e: JQuery.DragLeaveEvent) {
         e.preventDefault();  
         e.stopPropagation();
 
@@ -80,11 +79,15 @@ class EventController {
         square.css("backgroundColor", "transparent");
     }
 
-    static dispose() {
+    public dispose() {
         $(".tile.empty").off("drop");
         $(".tower").off("dragstart");
         $(".tile.empty").off("dragover");
         $(".tile.empty").off("dragleave");
+    }
+    
+    private getColorEnum(enumValue: string) {
+        return _.first(Object.keys(Colors).filter(k => typeof (Colors as any)[k] === enumValue));
     }
 }
 

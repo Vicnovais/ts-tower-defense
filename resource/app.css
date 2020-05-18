@@ -145,3 +145,11 @@ body {
 #app #towers-container .tower:hover .tooltip {
   display: flex;
 }
+#app .projectile {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  display: none;
+  border-radius: 50%;
+  background-color: #000;
+}
