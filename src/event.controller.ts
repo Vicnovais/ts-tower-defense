@@ -1,7 +1,6 @@
 import $ from "jquery";
 import _ from "underscore";
 import Map from "./map";
-import Colors from "./colors";
 
 class EventController {
     private map: Map;
@@ -37,10 +36,9 @@ class EventController {
             towerType = dataTransfer.getData("towerType"),
             square = $(e.currentTarget),
             dataX = Number(square.attr("data-x")),
-            dataY = Number(square.attr("data-y")),
-            color = this.getColorEnum(towerType) as Colors;
+            dataY = Number(square.attr("data-y"));
 
-        this.map.addTower(color, dataX, dataY);
+        this.map.addTower(towerType, dataX, dataY);
         square.css("opacity", 1);
         square.css("backgroundColor", towerType);
         square.off("drop");
@@ -84,10 +82,6 @@ class EventController {
         $(".tower").off("dragstart");
         $(".tile.empty").off("dragover");
         $(".tile.empty").off("dragleave");
-    }
-    
-    private getColorEnum(enumValue: string) {
-        return _.first(Object.keys(Colors).filter(k => typeof (Colors as any)[k] === enumValue));
     }
 }
 

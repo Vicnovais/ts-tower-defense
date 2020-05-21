@@ -78,7 +78,7 @@ class Map {
         }).filter(t => !!t);
     }
 
-    addTower(color: Colors, posX: number, posY: number) {
+    addTower(color: string, posX: number, posY: number) {
         var tower = new Tower(color, posX, posY);
         tower.addMonsters(this.monsters);
         this.towers.push(tower);

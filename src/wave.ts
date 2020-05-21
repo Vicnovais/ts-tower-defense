@@ -25,9 +25,10 @@ class Wave {
         for (let i = 0; i < waveConfig.monster.count; i++) {
             let hp = baseMonster.baseHp * waveConfig.monster.hpFactor,
                 armor = baseMonster.baseArmor * waveConfig.monster.armorFactor,
-                speed = baseMonster.baseSpeed * waveConfig.monster.speedFactor;
+                speed = baseMonster.baseSpeed * waveConfig.monster.speedFactor,
+                goldPerKill = waveConfig.goldPerKill;
             
-            this.monsters.push(new Monster(hp, speed, armor));
+            this.monsters.push(new Monster(hp, speed, armor, goldPerKill));
         }
     }
 

@@ -4,17 +4,23 @@ import Waypoint from "./waypoint";
 
 class Monster {
     private hp: number;
+    private readonly initialHp: number;
     private speed: number;
     private armor: number;
     private element: JQuery<HTMLElement>;
     private walkedWaypoints: Waypoint[];
+    public isDead: boolean;
+    private goldPerKill: number;
 
-    constructor(hp: number, speed: number, armor: number) {
+    constructor(hp: number, speed: number, armor: number, goldPerKill: number) {
         this.hp = hp;
+        this.initialHp = hp;
         this.speed = speed;
         this.armor = armor
         this.element = null;
         this.walkedWaypoints = [];
+        this.isDead = false;
+        this.goldPerKill = goldPerKill;
     }
 
     setHpFactor(factor: number) {
@@ -64,6 +70,24 @@ class Monster {
         this.element.hide();
         this.element.css({ left: coord.left + 10, top: coord.top + 10 });
         this.element.show();
+    }
+
+    updateHp() {
+        let perc = this.hp / this.initialHp,
+            width = 30*perc,
+            $life = this.element.find(".life");
+
+        $life.css("width", width);
+    }
+
+    hit(attack: number) {
+        this.hp -= attack;
+        this.updateHp();
+
+        if (this.hp <= 0) {
+            this.isDead = true;
+            this.element.remove();
+        }
     }
 }
 

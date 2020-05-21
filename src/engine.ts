@@ -25,7 +25,7 @@ class Engine {
         $monster.animate({
             top: walkTo.getPosition().top + 10,
             left: walkTo.getPosition().left + 10
-        }, monster.getSpeed() * 2000, "swing", this.onMove.bind(this, walkTo.getTile(), gameContext, $monster));
+        }, monster.getSpeed() * 2000, "linear", this.onMove.bind(this, walkTo.getTile(), gameContext, $monster));
     }
 
     static moveMonster(monster: Monster, map: Map, gameContext: GameContext) {

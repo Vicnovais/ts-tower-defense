@@ -19,7 +19,7 @@ class Projectile {
     shoot() {
         let $tile = this.sourceTower.getTowerTile(),
             tilePosition = $tile.offset(),
-            tileCenter = { x: tilePosition.left + 10, y: tilePosition.top + 10 },
+            tileCenter = { x: tilePosition.left + 20, y: tilePosition.top + 20 },
             $projectile = $(this.draw()),
             $monster = this.targetMonster.getElement(),
             monsterPosition = $monster.offset(),
@@ -27,7 +27,11 @@ class Projectile {
 
         this.$element = $projectile;
         $("#app").append($projectile);
-        $projectile.css("top", tileCenter.y).css("left", tileCenter.x).show();
+        $projectile
+            .css("top", tileCenter.y)
+            .css("left", tileCenter.x)
+            .css("background-color", this.sourceTower.rgbColor)
+            .show();
         $projectile.animate({
             top: monsterCenter.y,
             left: monsterCenter.x
@@ -36,6 +40,7 @@ class Projectile {
 
     private onCollide() {
         this.$element.remove();
+        this.targetMonster.hit(this.sourceTower.attack);
     }
 }
 
