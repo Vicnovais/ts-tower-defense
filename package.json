@@ -18,7 +18,7 @@
     "typescript": "^3.8.3",
     "underscore": "^1.10.2",
     "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack-cli": "^3.3.12"
   },
   "dependencies": {
     "jquery": "^3.5.0"
