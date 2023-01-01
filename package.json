@@ -13,12 +13,12 @@
   "devDependencies": {
     "@types/jquery": "^3.3.35",
     "@types/underscore": "^1.9.4",
-    "source-map-loader": "^0.2.4",
-    "ts-loader": "^6.2.2",
+    "source-map-loader": "^4.0.1",
+    "ts-loader": "^9.4.2",
     "typescript": "^3.8.3",
     "underscore": "^1.10.2",
-    "webpack": "^4.42.1",
-    "webpack-cli": "^3.3.11"
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1"
   },
   "dependencies": {
     "jquery": "^3.5.0"
